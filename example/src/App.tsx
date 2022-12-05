@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { ReactNativeMiCalenderView } from '@mindinventory/react-native-mi-calender';
+import {
+  Calender,
+  ReactNativeMiCalenderView,
+} from '@mindinventory/react-native-mi-calender';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <ReactNativeMiCalenderView color="#32a852" style={styles.box} />
+      <Calender />
     </View>
   );
 }

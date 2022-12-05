@@ -35,7 +35,9 @@
     "example": "yarn --cwd example",
     "bootstrap": "yarn example && yarn install && yarn example pods",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "run:ios": "cd example && yarn ios",
+    "run:android": "cd example && yarn android"
   },
   "keywords": [
     "react-native",

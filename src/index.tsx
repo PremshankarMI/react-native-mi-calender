@@ -24,3 +24,5 @@ export const ReactNativeMiCalenderView =
     : () => {
         throw new Error(LINKING_ERROR);
       };
+
+export * from './components';

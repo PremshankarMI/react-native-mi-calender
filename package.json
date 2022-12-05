@@ -28,13 +28,14 @@
   ],
   "scripts": {
     "test": "jest",
-    "typecheck": "tsc --noEmit",
+    "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepack": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
     "bootstrap": "yarn example && yarn install && yarn example pods",
-    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build"
+    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build",
+    "prepare": "husky install"
   },
   "keywords": [
     "react-native",
@@ -52,18 +53,25 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.2.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "@evilmartians/lefthook": "^1.2.2",
     "@react-native-community/eslint-config": "^3.0.2",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
+    "babel-plugin-module-resolver": "^4.1.0",
     "commitlint": "^17.0.2",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-import-order-autofix": "^0.8.3",
+    "eslint-plugin-no-inline-styles": "^1.0.5",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "husky": "^8.0.2",
     "jest": "^28.1.1",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
@@ -115,11 +123,29 @@
   },
   "eslintConfig": {
     "root": true,
+    "plugins": [
+      "import",
+      "sort-keys-fix",
+      "react-hooks",
+      "eslint-plugin-no-inline-styles"
+    ],
     "extends": [
       "@react-native-community",
-      "prettier"
+      "prettier",
+      "plugin:react-hooks/recommended"
     ],
     "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "error",
+      "no-inline-styles/no-inline-styles": 2,
+      "sort-keys-fix/sort-keys-fix": [
+        "error",
+        "asc",
+        {
+          "caseSensitive": false,
+          "natural": true
+        }
+      ],
       "prettier/prettier": [
         "error",
         {
@@ -129,7 +155,70 @@
           "trailingComma": "es5",
           "useTabs": false
         }
-      ]
+      ],
+      "no-restricted-imports": [
+        "error"
+      ],
+      "no-console": [
+        "error"
+      ],
+      "no-shadow": "off",
+      "sort-imports": [
+        "error",
+        {
+          "ignoreCase": true,
+          "ignoreDeclarationSort": true,
+          "ignoreMemberSort": false
+        }
+      ],
+      "import/order": [
+        "error",
+        {
+          "groups": [
+            [
+              "external",
+              "builtin"
+            ],
+            "internal",
+            [
+              "sibling",
+              "parent"
+            ],
+            "index"
+          ],
+          "pathGroups": [
+            {
+              "pattern": "@(react|react-native)",
+              "group": "external",
+              "position": "before"
+            },
+            {
+              "pattern": "@mindinventory/**",
+              "group": "internal"
+            },
+            {
+              "pattern": "@src/**",
+              "group": "internal"
+            }
+          ],
+          "pathGroupsExcludedImportTypes": [
+            "internal",
+            "react"
+          ],
+          "newlines-between": "always",
+          "alphabetize": {
+            "order": "asc",
+            "caseInsensitive": true
+          }
+        }
+      ],
+      "import/newline-after-import": [
+        "warn",
+        {
+          "count": 1
+        }
+      ],
+      "import/no-duplicates": "error"
     }
   },
   "eslintIgnore": [

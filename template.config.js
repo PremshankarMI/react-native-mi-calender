@@ -4,7 +4,8 @@ module.exports = {
   placeholderName: "MIBoilerplate",
 
   // Directory with template
-  templateDir: "./react-native-mi-calender",
+  templateDir:
+    "./react-native-mi-calender/@mindinventory/react-native-mi-calender/src",
 
   // Path to script, which will be executed after init
   // postInitScript: "./script.js"

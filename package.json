@@ -1,0 +1,21 @@
+{
+  "name": "mi-calender",
+  "version": "1.0.0",
+  "description": "boilerplate for Mi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PremshankarMI/react-native-mi-calender.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "for",
+    "create",
+    "library"
+  ],
+  "author": "Mindinventory",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PremshankarMI/react-native-mi-calender/issues"
+  },
+  "homepage": "https://github.com/PremshankarMI/react-native-mi-calender#readme"
+}
